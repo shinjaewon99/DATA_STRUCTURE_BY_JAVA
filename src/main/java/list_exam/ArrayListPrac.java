@@ -13,6 +13,8 @@ public class ArrayListPrac {
         store.addLast(4);
         store.add(1, 10);
         store.addFirst(15);
+
+        System.out.println(store.remove(1));
         System.out.println(store.toString());
     }
 }
@@ -26,7 +28,7 @@ class ArrayList {
 
     // List 자료구조의 add는 파라미터로 들어온 index에 value값을 할당하고, 기존에 있던 값을 뒤로 미뤄야 한다.
     // EX : [1,2,3,4] 일 경우 → add(1, 10), 1번 인덱스에 10을 할당하여 [1,10,2,3,4] 가 된다.
-    public boolean add(int index, Object value){
+    public boolean add(final int index, final Object value) {
         // size 위치부터 index까지 거꾸로 돌면서 요소를 하나씩 뒤로 밀어낸다.
         for (int i = size - 1; i >= index; i--) {
             store[i + 1] = store[i];
@@ -36,11 +38,11 @@ class ArrayList {
         return true;
     }
 
-    public boolean addFirst(Object value) {
+    public boolean addFirst(final Object value) {
         return add(0, value);
     }
 
-    public boolean addLast(Object value) {
+    public boolean addLast(final Object value) {
         // 마지막 index인 size 변수
         store[size] = value;
         size++;
@@ -55,10 +57,23 @@ class ArrayList {
         for (int i = 0; i < size; i++) {
             prefix += store[i];
 
-            if(i < size - 1){
+            if (i < size - 1) {
                 prefix += ",";
             }
         }
         return prefix + "]";
+    }
+
+    // Collection 에서 remove는 삭제한 값을 추적하기 위해 Object를 리턴한다.
+    public Object remove(final int index) {
+        Object removed = store[index];
+        // 삭제할 인덱스는 뒤에 있는 인덱스를 끌어와서 중첩시킨다.
+        for (int i = index + 1; i <= size + 1; i++) {
+            store[i - 1] = store[i];
+        }
+        size--;
+        store[size] = null;
+
+        return removed;
     }
 }
