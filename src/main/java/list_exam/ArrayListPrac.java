@@ -14,6 +14,7 @@ public class ArrayListPrac {
 
         System.out.println(store.get(1));
         System.out.println(store.toString());
+        System.out.println(store.indexOf(20));
     }
 }
 
@@ -90,5 +91,21 @@ class ArrayList {
      */
     public Object get(final int index) {
         return store[index];
+    }
+
+    // 지역변수를 private으로 막고 메소드로 접근하는 이유는 외부에서 변경하는걸 막기 위해
+    public int size() {
+        return size;
+    }
+
+    // 해당 value의 index 값을 반환
+
+    public int indexOf(final Object value) {
+        for (int i = 0; i < size; i++) {
+            if(value.equals(store[i])){
+                return i;
+            }
+        }
+        return -1;
     }
 }
