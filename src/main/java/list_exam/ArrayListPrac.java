@@ -11,10 +11,8 @@ public class ArrayListPrac {
         store.addLast(2);
         store.addLast(3);
         store.addLast(4);
-        store.add(1, 10);
-        store.addFirst(15);
 
-        System.out.println(store.remove(1));
+        System.out.println(store.get(1));
         System.out.println(store.toString());
     }
 }
@@ -75,5 +73,22 @@ class ArrayList {
         store[size] = null;
 
         return removed;
+    }
+
+    public Object removeFirst(){
+        return remove(0);
+    }
+
+    public Object removeLast() {
+        // 인덱스는 0부터 시작하므로 -1 을 해줘야 마지막 인덱스 이다.
+        return remove(size - 1);
+    }
+
+    /**
+     * ArrayList는 입력, 삭제시 LinkedList 보다 성능이 떨어지지만
+     * 조회 (get) 을 할 경우 성능이 LinkedList 보다 좋음 (index로 접근)
+     */
+    public Object get(final int index) {
+        return store[index];
     }
 }
