@@ -15,6 +15,13 @@ public class ArrayListPrac {
         System.out.println(store.get(1));
         System.out.println(store.toString());
         System.out.println(store.indexOf(20));
+
+        // ArrayList.ListIterator = ArrayList 클래스의 내부 클래스읜 ListIterator를 가르킴
+        ArrayList.ListIterator iteratorOperation = store.listIterator();
+
+        while (iteratorOperation.hasNext()) {
+            System.out.println(iteratorOperation.next());
+        }
     }
 }
 
@@ -76,7 +83,7 @@ class ArrayList {
         return removed;
     }
 
-    public Object removeFirst(){
+    public Object removeFirst() {
         return remove(0);
     }
 
@@ -102,10 +109,27 @@ class ArrayList {
 
     public int indexOf(final Object value) {
         for (int i = 0; i < size; i++) {
-            if(value.equals(store[i])){
+            if (value.equals(store[i])) {
                 return i;
             }
         }
         return -1;
+    }
+
+    public ListIterator listIterator() {
+        return new ListIterator();
+    }
+
+    class ListIterator {
+        private int nextIndex = 0;
+
+        public boolean hasNext() {
+            return nextIndex < size();
+        }
+
+        // store 객체에 인덱스 값을 반환
+        public Object next() {
+            return store[nextIndex++];
+        }
     }
 }
