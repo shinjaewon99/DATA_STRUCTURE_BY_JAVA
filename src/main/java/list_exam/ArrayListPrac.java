@@ -22,6 +22,10 @@ public class ArrayListPrac {
         while (iteratorOperation.hasNext()) {
             System.out.println(iteratorOperation.next());
         }
+
+        while (iteratorOperation.hasPrevious()) {
+            System.out.println(iteratorOperation.previous());
+        }
     }
 }
 
@@ -121,7 +125,7 @@ class ArrayList {
     }
 
     class ListIterator {
-        private int nextIndex = 0;
+        public int nextIndex = 0;
 
         public boolean hasNext() {
             return nextIndex < size();
@@ -130,6 +134,16 @@ class ArrayList {
         // store 객체에 인덱스 값을 반환
         public Object next() {
             return store[nextIndex++];
+        }
+
+        // 이전 nextIndex에 대한 store객체를 반환
+        // 후위 표기식이 아닌 전위 표기식으로 하는 이유는 nextIndex에 대해 즉각적인 감소가 필요하기 때문
+        public Object previous() {
+            return store[--nextIndex];
+        }
+
+        public boolean hasPrevious() {
+            return nextIndex > 0;
         }
     }
 }
