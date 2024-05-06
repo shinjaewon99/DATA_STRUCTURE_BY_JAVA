@@ -20,9 +20,17 @@ public class ArrayListPrac {
         ArrayList.ListIterator iteratorOperation = store.listIterator();
 
         while (iteratorOperation.hasNext()) {
-            System.out.println(iteratorOperation.next());
-        }
+            int number = (int) iteratorOperation.next();
+            if(number == 3){
+                iteratorOperation.add(6);
+            }
 
+            if(number == 4) {
+                iteratorOperation.remove();
+            }
+
+        }
+        System.out.println(store);
         while (iteratorOperation.hasPrevious()) {
             System.out.println(iteratorOperation.previous());
         }
@@ -125,7 +133,7 @@ class ArrayList {
     }
 
     class ListIterator {
-        public int nextIndex = 0;
+        private int nextIndex = 0;
 
         public boolean hasNext() {
             return nextIndex < size();
@@ -144,6 +152,16 @@ class ArrayList {
 
         public boolean hasPrevious() {
             return nextIndex > 0;
+        }
+
+        // iterator 클래스 외부의 ArrayList 클래스의 add 메소드를 사용하기 위해 this 키워드 사용
+        public void add(Object value) {
+            ArrayList.this.add(nextIndex++, value);
+        }
+
+        public void remove() {
+            ArrayList.this.remove(nextIndex-1);
+            nextIndex--;
         }
     }
 }
