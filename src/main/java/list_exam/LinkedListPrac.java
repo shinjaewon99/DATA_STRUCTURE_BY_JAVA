@@ -5,6 +5,13 @@ public class LinkedListPrac {
     public static void main(String[] args) {
         LinkedList store = new LinkedList();
 
+        store.addFirst(30); // data = 30, next = null
+        store.addFirst(20);
+        store.addFirst(10);
+
+        store.addLast(60);
+        store.addLast(50);
+        store.addLast(40);
 
     }
 
@@ -21,6 +28,29 @@ class LinkedList {
     private Node tail; // 마지막 Node를 위한 tail 변수
     private int size = 0;
 
+    public void addFirst(final int value) {
+        Node newNode = new Node(value);
+        newNode.next = head; // 새로 만들어지는 노드 값으로 head 값을 지정
+        head = newNode;
+        size++;
+
+        // 다음 노드가 존재 하지 않은 경우 (노드 혼자 존재)
+        if (head.next == null) {
+            tail = head;
+        }
+    }
+
+    public void addLast(final int value) {
+        Node newNode = new Node(value);
+
+        if (size == 0) {
+            addFirst(value);
+        } else {
+            tail.next = newNode;
+            tail = newNode;
+            size++;
+        }
+    }
 
     private class Node {
 
@@ -31,7 +61,7 @@ class LinkedList {
 
         // 3. Node가 생성될때 값을 가지고 있어야함
         // 아직 다음 노드는 모름 null
-        public Node(Object input) {
+        public Node(final Object input) {
             this.data = input;
             this.next = null;
         }
