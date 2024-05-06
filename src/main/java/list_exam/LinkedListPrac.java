@@ -6,12 +6,11 @@ public class LinkedListPrac {
         LinkedList store = new LinkedList();
 
         store.addFirst(30); // data = 30, next = null
-        store.addFirst(20);
-        store.addFirst(10);
 
         store.addLast(60);
-        store.addLast(50);
-        store.addLast(40);
+        store.add(1, 15);
+
+        System.out.println(store.toString());
 
     }
 
@@ -49,6 +48,35 @@ class LinkedList {
             tail.next = newNode;
             tail = newNode;
             size++;
+        }
+    }
+
+    Node node(int index) {
+        Node num = head;
+
+        for (int i = 0; i < index; i++) {
+            num = num.next;
+        }
+        return num;
+    }
+
+    // index에 맞춰서 value값을 추가 하기 위해서는 이전 노드의 "링크"를 끊고 새로운 value와 "링크"를 맺어야함
+    public void add(final int index, final int value) {
+        if (index == 0) {
+            addFirst(value);
+        } else {
+            // 이전 노드를 반환
+            Node findNode1 = node(index - 1);
+            Node findNode2 = findNode1.next;
+            Node newNode = new Node(value);
+            findNode1.next = newNode;
+            newNode.next = findNode2;
+            size++;
+
+            // 제일 마지막 노드가 null 이라면, tail은 newNode이다.
+            if (newNode.next == null) {
+                tail = newNode;
+            }
         }
     }
 
