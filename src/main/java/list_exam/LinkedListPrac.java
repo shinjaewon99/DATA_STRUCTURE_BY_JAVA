@@ -15,6 +15,10 @@ public class LinkedListPrac {
 
         System.out.println(store);
 
+        LinkedList.ListIterator iterator = store.listIterator();
+
+        System.out.println(iterator.next());
+
     }
 }
 
@@ -169,6 +173,29 @@ class LinkedList {
                 }
             }
             return index;
+        }
+    }
+
+    public ListIterator listIterator() {
+        return new ListIterator();
+    }
+
+    public class ListIterator {
+        private Node next;
+        private Node lastReturned;
+        private int nextIndex;
+
+        // ListIterator 가 생성 될때 next를 초기화 한다.
+        ListIterator() {
+            next = head;
+        }
+
+        public Object next() {
+            lastReturned = next;
+            next = next.next;
+            nextIndex++;
+
+            return lastReturned.data;
         }
     }
 }
