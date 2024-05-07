@@ -10,6 +10,9 @@ public class LinkedListPrac {
         store.addLast(60);
         store.add(1, 15);
 
+        System.out.println(store.removeFirst());
+        store.remove(0);
+
         System.out.println(store);
 
     }
@@ -76,6 +79,40 @@ class LinkedList {
                 tail = newNode;
             }
         }
+    }
+
+    public Object removeFirst() {
+        Node node = head;
+        head = head.next;
+        Object returnData = node.data;
+        node = null;
+        size--;
+        return returnData;
+    }
+
+    public Object remove(final int index) {
+        if (index == 0) {
+            return removeFirst();
+        }
+        // index의 이전 노드
+        Node node = node(index - 1);
+        Node todoDeleted = node.next;
+        node.next = node.next.next;
+        Object returnData = todoDeleted.data;
+
+        // 삭제할 데이터가 마지막 노드일 경우
+        if (returnData == tail) {
+            tail = node;
+        }
+
+        todoDeleted = null;
+        size--;
+
+        return returnData;
+    }
+
+    public Object removeLast() {
+        return remove(size - 1);
     }
 
     private class Node {
