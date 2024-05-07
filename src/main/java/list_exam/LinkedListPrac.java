@@ -10,11 +10,9 @@ public class LinkedListPrac {
         store.addLast(60);
         store.add(1, 15);
 
-        System.out.println(store.toString());
+        System.out.println(store);
 
     }
-
-
 }
 
 /**
@@ -95,7 +93,22 @@ class LinkedList {
         }
 
         public String toString() {
-            return String.valueOf(this.data);
+            if (head == null) {
+                return "[]";
+            }
+            Node node = head;
+            String result = "[";
+
+            // head의 다음 링크가 null이 아닐 경우 data가 존재 하다는 것
+            while (node.next != null) {
+                result += node.data + ", ";
+                // head를 바꿔준다.
+                node = next.next;
+            }
+
+            // 마지막 노드에서는 null 이므로, data를 수동으로 넣어준다.
+            result += node.data;
+            return result + "]";
         }
     }
 }
