@@ -147,5 +147,28 @@ class LinkedList {
             result += node.data;
             return result + "]";
         }
+
+        public int size() {
+            return size;
+        }
+
+        public Object get(final int index) {
+            return node(index).data;
+        }
+
+        public int indexOf(final Object data) {
+            Node node = head;
+            int index = 0;
+            while (node.data != data) {
+                // 다음 노드로 이동 시킨다.
+                node = node.next;
+                index++;
+                // node가 null 이라면 찾는 값이 없다는 것
+                if (node == null) {
+                    return -1;
+                }
+            }
+            return index;
+        }
     }
 }
