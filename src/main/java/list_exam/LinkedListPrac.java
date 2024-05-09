@@ -205,5 +205,22 @@ class LinkedList {
         public boolean hasNext() {
             return nextIndex < size;
         }
+
+        public void add(final Object value) {
+            Node newNode = new Node(value);
+
+            // 처음 add를 하는 경우 (노드가 head가 되어야 함)
+            if (lastReturned == null) {
+                head = newNode;
+                newNode.next = next;
+            } else {
+                lastReturned.next = newNode;
+                newNode.next = next;
+            }
+
+            lastReturned = newNode;
+            nextIndex++;
+            size++;
+        }
     }
 }
