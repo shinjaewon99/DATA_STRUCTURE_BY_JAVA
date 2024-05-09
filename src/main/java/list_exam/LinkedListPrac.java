@@ -1,5 +1,8 @@
 package list_exam;
 
+
+// LinkedList 는 기준 노드에서 다음 노드의 정보는 알 수 있지만 기준 노드의 이전 노드의 정보를 알 수가 없다
+// O - O - O : 두번째 노드는 세번째 노드의 정보를 알 수 있지만 두번째 노드는 첫번째 노드의 정보를 알 수 없다.
 public class LinkedListPrac {
 
     public static void main(String[] args) {
@@ -180,7 +183,7 @@ class LinkedList {
         return new ListIterator();
     }
 
-    public class ListIterator {
+    class ListIterator {
         private Node next;
         private Node lastReturned;
         private int nextIndex;
@@ -196,6 +199,11 @@ class LinkedList {
             nextIndex++;
 
             return lastReturned.data;
+        }
+
+        // nextIndex가 size 보다 크게 되면 null 이므로 false 이다.
+        public boolean hasNext() {
+            return nextIndex < size;
         }
     }
 }
