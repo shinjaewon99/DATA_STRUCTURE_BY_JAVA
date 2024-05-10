@@ -222,5 +222,16 @@ class LinkedList {
             nextIndex++;
             size++;
         }
+
+        public void remove() {
+            // nextIndex가 0 이라면 아무런 element가 선택 되지 않은 것
+            if (nextIndex == 0) {
+                throw new IllegalArgumentException();
+            }
+
+            // LinkedList.this = LinkedList 인스턴스를 가르킨다.
+            LinkedList.this.remove(nextIndex - 1);
+            nextIndex--;
+        }
     }
 }
