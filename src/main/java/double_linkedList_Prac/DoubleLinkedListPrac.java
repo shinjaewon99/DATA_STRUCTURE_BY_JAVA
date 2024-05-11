@@ -218,6 +218,23 @@ class DoubleLinkedList {
             return lastReturned.data;
         }
 
+        // 이전노드가 남아있는지 검증하는 메소드
+        public boolean hasPrevious() {
+            return nextIndex > 0;
+        }
+
+        public Object previous() {
+
+            // next가 null 이라는 것은 노드가 끝에 도달 했다라는 것
+            if (next == null) {
+                lastReturned = next = tail;
+            } else {
+                lastReturned = next = next.prev;
+            }
+            nextIndex--;
+            return lastReturned.data;
+        }
+
         public boolean hasNext() {
             return nextIndex < size;
         }
