@@ -247,6 +247,16 @@ class DoubleLinkedList {
                 newNode.next = next;
             } else {
                 lastReturned.next = newNode;
+                newNode.prev = lastReturned;
+                if (next != null) {
+                    // 양방향 관계를 위한 바인딩
+                    newNode.next = next;
+                    next.prev = newNode;
+                }
+                // 가장 끝에 있는 노드라면 tail이 newNode가 될 것 이다.
+                else {
+                    tail = newNode;
+                }
                 newNode.next = next;
             }
 
