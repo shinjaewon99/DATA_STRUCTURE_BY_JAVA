@@ -257,7 +257,6 @@ class DoubleLinkedList {
                 else {
                     tail = newNode;
                 }
-                newNode.next = next;
             }
 
             lastReturned = newNode;
