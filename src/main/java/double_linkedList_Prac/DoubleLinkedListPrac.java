@@ -106,6 +106,10 @@ class DoubleLinkedList {
         head = head.next;
         Object returnData = node.data;
         node = null;
+
+        if (head != null) {
+            head.prev = null;
+        }
         size--;
         return returnData;
     }
@@ -118,6 +122,11 @@ class DoubleLinkedList {
         Node node = node(index - 1);
         Node todoDeleted = node.next;
         node.next = node.next.next;
+
+        if (node.next != null) {
+            node.next.prev = node;
+        }
+
         Object returnData = todoDeleted.data;
 
         if (returnData == tail) {
