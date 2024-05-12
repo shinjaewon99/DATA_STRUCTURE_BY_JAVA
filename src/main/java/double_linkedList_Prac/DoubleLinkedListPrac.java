@@ -268,7 +268,34 @@ class DoubleLinkedList {
             if (nextIndex == 0) {
                 throw new IllegalArgumentException();
             }
-            DoubleLinkedList.this.remove(nextIndex - 1);
+            Node n = lastReturned.next;
+            Node p = lastReturned.prev;
+
+            if (p == null) {
+                head = n;
+                head.prev = null;
+                lastReturned = null;
+            }
+            // 연결이 끊김
+            else {
+                p.next = next;
+                lastReturned.prev = null;
+            }
+
+            // 가장 마지막에 있는 노드를 삭제
+            if (n == null) {
+                tail = p;
+                tail.next = null;
+            } else {
+                n.prev = p;
+            }
+
+            if (next == null) {
+                lastReturned = tail;
+            } else {
+                lastReturned = next.prev;
+            }
+            size--;
             nextIndex--;
         }
     }
